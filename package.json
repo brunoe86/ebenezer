@@ -1,0 +1,8 @@
+{
+  "name": "ebenezer-barbearia",
+  "version": "1.0.0",
+  "description": "Ebenézer Barbearia website with Google Calendar booking",
+  "dependencies": {
+    "googleapis": "^140.0.0"
+  }
+}
