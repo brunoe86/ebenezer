@@ -716,6 +716,13 @@ const obs = new IntersectionObserver(entries =>
   { threshold:0.1 }
 );
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
+});
 </script>
 </body>
 </html>
