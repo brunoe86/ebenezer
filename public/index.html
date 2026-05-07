@@ -716,6 +716,728 @@ const obs = new IntersectionObserver(entries =>
   { threshold:0.1 }
 );
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebenézer Barbearia | Setúbal</title>
+<meta name="description" content="A Barbearia Ebenezer oferece os melhores serviços de cabelo, barba, sobrancelha. Venha nos visitar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim: #8a6f2e;
+  --black: #0d0d0d;
+  --dark: #141414;
+  --darker: #1a1a1a;
+  --card: #1e1e1e;
+  --text: #f0ece4;
+  --muted: #9a9286;
+  --border: rgba(201,168,76,0.2);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--black); color:var(--text); font-family:'Barlow',sans-serif; font-weight:300; overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.2rem 4rem;
+  background:rgba(13,13,13,0.92); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--gold); letter-spacing:0.05em; text-decoration:none; }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; transition:color 0.25s; }
+.nav-links a:hover { color:var(--gold); }
+.nav-book { background:var(--gold) !important; color:var(--black) !important; padding:0.55rem 1.4rem; border-radius:2px; font-weight:500 !important; }
+.nav-book:hover { background:var(--gold-light) !important; }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center;
+  position:relative; padding:8rem 2rem 4rem; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background-image:url('https://static.wixstatic.com/media/f426f0_017eb1ece5e74afc93043804f3623f75~mv2.png/v1/fill/w_1247,h_699,al_c,q_90,enc_avif,quality_auto/brunoe86_barber_tools_on_the_table_scissor_closeup_8afba0eb-5611-4040-b52c-c8ea8730c3fa_pn.png');
+  background-size:cover; background-position:center;
+  filter:brightness(0.18) saturate(0.6);
+}
+.hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(13,13,13,0.3) 0%,rgba(13,13,13,0.85) 100%); }
+.hero-content { position:relative; z-index:1; max-width:700px; }
+.hero-tag { display:inline-block; font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); border:1px solid var(--border); padding:0.4rem 1.2rem; margin-bottom:2rem; animation:fadeUp 0.8s ease both; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(3.5rem,8vw,7rem); font-weight:900; line-height:0.95; letter-spacing:-0.02em; animation:fadeUp 0.8s 0.15s ease both; }
+.hero h1 span { color:var(--gold); }
+.hero-sub { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--muted); margin:1.5rem 0 2.5rem; letter-spacing:0.04em; animation:fadeUp 0.8s 0.3s ease both; }
+.hero-ctas { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp 0.8s 0.45s ease both; }
+.btn-primary { background:var(--gold); color:var(--black); padding:0.85rem 2.2rem; font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; text-decoration:none; font-weight:500; border:none; cursor:pointer; border-radius:2px; transition:background 0.2s,transform 0.15s; font-family:'Barlow',sans-serif; }
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+.btn-outline { background:transparent; color:var(--text); padding:0.85rem 2.2rem; font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; text-decoration:none; font-weight:400; border:1px solid rgba(240,236,228,0.3); cursor:pointer; border-radius:2px; transition:border-color 0.2s,transform 0.15s; }
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-1px); }
+.hero-divider { position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold-dim),transparent); }
+
+/* SECTIONS */
+section { padding:6rem 4rem; }
+.section-label { font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); font-weight:700; line-height:1.1; margin-bottom:1rem; }
+.section-title em { font-style:italic; color:var(--gold); }
+.section-intro { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--muted); max-width:520px; line-height:1.7; }
+
+/* SERVICES */
+#servicos { background:var(--darker); }
+.services-header { margin-bottom:3.5rem; }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1px; border:1px solid var(--border); }
+.service-card { background:var(--card); padding:2rem 1.75rem; border-right:1px solid var(--border); border-bottom:1px solid var(--border); transition:background 0.25s; display:flex; flex-direction:column; gap:0.5rem; }
+.service-card:hover { background:#242424; }
+.service-name { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:600; }
+.service-meta { display:flex; gap:1rem; align-items:center; font-size:0.78rem; color:var(--muted); letter-spacing:0.06em; margin:0.25rem 0 0.75rem; }
+.service-price { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--gold); }
+.service-price sup { font-size:1rem; vertical-align:super; }
+.service-book { margin-top:auto; display:inline-block; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--border); padding-bottom:2px; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; transition:color 0.2s,border-color 0.2s; text-align:left; width:fit-content; font-family:'Barlow',sans-serif; }
+.service-book:hover { color:var(--gold-light); border-color:var(--gold); }
+
+/* ── BOOKING SECTION ── */
+#agendar { background:var(--black); }
+.booking-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:start; }
+.booking-info { position:sticky; top:8rem; }
+.booking-detail { margin-top:2.5rem; display:flex; flex-direction:column; gap:1.5rem; }
+.booking-detail-item { display:flex; gap:1rem; align-items:flex-start; }
+.detail-icon { width:36px; height:36px; min-width:36px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:var(--gold); }
+.detail-text p { font-size:0.78rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.2rem; }
+.detail-text span { font-size:0.95rem; }
+
+/* Steps */
+.steps { display:flex; gap:0; margin-bottom:2.5rem; border-bottom:1px solid var(--border); }
+.step-btn { flex:1; padding:0.9rem 0.5rem; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); background:none; border:none; cursor:pointer; font-family:'Barlow',sans-serif; border-bottom:2px solid transparent; transition:color 0.2s,border-color 0.2s; position:relative; bottom:-1px; }
+.step-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
+.step-btn:disabled { opacity:0.35; cursor:default; }
+.step-num { display:inline-block; width:18px; height:18px; border-radius:50%; border:1px solid currentColor; font-size:0.65rem; line-height:18px; text-align:center; margin-right:0.4rem; }
+
+.step-panel { display:none; }
+.step-panel.active { display:block; }
+
+/* Step 1 — Service */
+.service-select-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.svc-option { background:var(--darker); border:1px solid var(--border); padding:1rem 1.1rem; cursor:pointer; border-radius:2px; transition:border-color 0.2s,background 0.2s; }
+.svc-option:hover { border-color:var(--gold-dim); background:var(--card); }
+.svc-option.selected { border-color:var(--gold); background:rgba(201,168,76,0.07); }
+.svc-option-name { font-family:'Playfair Display',serif; font-size:0.95rem; margin-bottom:0.3rem; }
+.svc-option-meta { font-size:0.72rem; color:var(--muted); }
+.svc-option-price { font-size:1.1rem; color:var(--gold); font-family:'Cormorant Garamond',serif; font-weight:600; margin-top:0.4rem; }
+
+/* Step 2 — Date */
+.calendar-wrap { user-select:none; }
+.cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+.cal-title { font-family:'Playfair Display',serif; font-size:1.1rem; }
+.cal-nav { background:none; border:1px solid var(--border); color:var(--text); width:32px; height:32px; cursor:pointer; font-size:1rem; border-radius:2px; transition:border-color 0.2s; display:flex; align-items:center; justify-content:center; }
+.cal-nav:hover { border-color:var(--gold); color:var(--gold); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.cal-day-label { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); text-align:center; padding:0.4rem 0; }
+.cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:0.85rem; border-radius:2px; cursor:pointer; border:1px solid transparent; transition:all 0.15s; }
+.cal-day.empty { cursor:default; }
+.cal-day.closed { color:var(--muted); opacity:0.35; cursor:not-allowed; }
+.cal-day.past { color:var(--muted); opacity:0.25; cursor:not-allowed; }
+.cal-day.available:hover { border-color:var(--gold-dim); background:rgba(201,168,76,0.08); }
+.cal-day.selected { background:var(--gold); color:var(--black); font-weight:500; }
+.cal-day.today { border-color:var(--gold-dim); }
+
+/* Step 3 — Time slots */
+.slots-header { font-size:0.78rem; color:var(--muted); margin-bottom:1rem; letter-spacing:0.05em; }
+.slots-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
+.slot-btn { background:var(--darker); border:1px solid var(--border); color:var(--text); padding:0.65rem 0; font-size:0.82rem; cursor:pointer; border-radius:2px; transition:all 0.15s; font-family:'Barlow',sans-serif; }
+.slot-btn:hover { border-color:var(--gold-dim); background:var(--card); }
+.slot-btn.selected { background:var(--gold); border-color:var(--gold); color:var(--black); font-weight:500; }
+.slots-loading { display:flex; align-items:center; gap:0.75rem; color:var(--muted); font-size:0.85rem; padding:1rem 0; }
+.spinner { width:16px; height:16px; border:2px solid var(--border); border-top-color:var(--gold); border-radius:50%; animation:spin 0.7s linear infinite; flex-shrink:0; }
+.slots-empty { color:var(--muted); font-size:0.85rem; padding:1rem 0; font-family:'Cormorant Garamond',serif; font-size:1rem; }
+
+/* Step 4 — Details */
+.form-fields { display:flex; flex-direction:column; gap:1.1rem; }
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-group { display:flex; flex-direction:column; gap:0.45rem; }
+.form-group label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); }
+.form-group input, .form-group textarea {
+  background:var(--darker); border:1px solid rgba(201,168,76,0.18); color:var(--text);
+  padding:0.8rem 0.9rem; font-family:'Barlow',sans-serif; font-size:0.9rem; font-weight:300;
+  border-radius:2px; transition:border-color 0.2s; outline:none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color:var(--gold); }
+.form-group textarea { resize:vertical; min-height:80px; }
+
+/* Booking summary bar */
+.booking-summary {
+  background:rgba(201,168,76,0.07); border:1px solid var(--border);
+  padding:1rem 1.2rem; border-radius:2px; margin-bottom:1.5rem;
+  display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.82rem;
+}
+.booking-summary span { color:var(--muted); }
+.booking-summary strong { color:var(--gold); }
+
+.step-actions { display:flex; gap:0.75rem; margin-top:1.5rem; flex-wrap:wrap; }
+.btn-step-next { background:var(--gold); color:var(--black); padding:0.85rem 2rem; font-size:0.76rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; border:none; cursor:pointer; border-radius:2px; font-family:'Barlow',sans-serif; transition:background 0.2s,transform 0.15s; }
+.btn-step-next:hover { background:var(--gold-light); transform:translateY(-1px); }
+.btn-step-next:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+.btn-step-back { background:transparent; color:var(--muted); padding:0.85rem 1.5rem; font-size:0.76rem; letter-spacing:0.2em; text-transform:uppercase; border:1px solid var(--border); cursor:pointer; border-radius:2px; font-family:'Barlow',sans-serif; transition:all 0.2s; }
+.btn-step-back:hover { border-color:var(--gold-dim); color:var(--text); }
+
+/* Error */
+.form-error { color:#e05a5a; font-size:0.82rem; padding:0.75rem 1rem; background:rgba(220,80,80,0.08); border:1px solid rgba(220,80,80,0.25); border-radius:2px; }
+
+/* Success */
+.booking-success {
+  display:none; text-align:center; padding:3rem 2rem;
+  border:1px solid var(--border); background:rgba(201,168,76,0.05);
+  border-radius:2px;
+}
+.success-icon { font-size:2.5rem; margin-bottom:1rem; }
+.booking-success h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:0.75rem; }
+.booking-success p { color:var(--muted); font-family:'Cormorant Garamond',serif; font-size:1.05rem; line-height:1.6; }
+.booking-success strong { color:var(--gold); }
+
+/* HOURS */
+#horario { background:var(--darker); text-align:center; }
+.hours-grid { display:flex; justify-content:center; margin-top:3rem; border:1px solid var(--border); max-width:600px; margin-left:auto; margin-right:auto; }
+.hours-item { flex:1; padding:2rem 1.5rem; border-right:1px solid var(--border); }
+.hours-item:last-child { border-right:none; }
+.hours-day { font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem; }
+.hours-time { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold); }
+
+/* CONTACT */
+#contacto { background:var(--black); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.contact-map { aspect-ratio:4/3; background:var(--darker); border:1px solid var(--border); overflow:hidden; border-radius:2px; }
+.contact-map iframe { width:100%; height:100%; border:none; filter:grayscale(80%) invert(10%); }
+.contact-details { display:flex; flex-direction:column; gap:2rem; }
+.contact-item p { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; }
+.contact-item a { color:var(--gold); text-decoration:none; }
+.contact-item a:hover { color:var(--gold-light); }
+
+/* FOOTER */
+footer { background:var(--darker); border-top:1px solid var(--border); padding:2.5rem 4rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+footer .logo { font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); }
+footer p { font-size:0.78rem; color:var(--muted); }
+
+/* TOAST */
+.toast { position:fixed; bottom:2rem; right:2rem; background:var(--card); border:1px solid var(--border); padding:1rem 1.5rem; border-radius:2px; font-size:0.85rem; z-index:999; opacity:0; pointer-events:none; transform:translateY(8px); transition:opacity 0.3s,transform 0.3s; max-width:320px; }
+.toast.show { opacity:1; pointer-events:all; transform:translateY(0); }
+.toast.error { border-color:rgba(220,80,80,0.5); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes spin { to{transform:rotate(360deg)} }
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease,transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* MOBILE */
+@media(max-width:900px) {
+  nav { padding:1rem 1.5rem; }
+  .nav-links { display:none; }
+  section { padding:4rem 1.5rem; }
+  .booking-layout { grid-template-columns:1fr; gap:2.5rem; }
+  .booking-info { position:static; }
+  #contacto { grid-template-columns:1fr; gap:2.5rem; }
+  footer { padding:2rem 1.5rem; }
+  .hours-grid { flex-direction:column; }
+  .hours-item { border-right:none; border-bottom:1px solid var(--border); }
+  .hours-item:last-child { border-bottom:none; }
+  .service-select-grid { grid-template-columns:1fr; }
+  .slots-grid { grid-template-columns:repeat(3,1fr); }
+  .form-row-2 { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">EBENÉZER</a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#horario">Horário</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#agendar" class="nav-book">Agendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Barbearia · Setúbal · Desde 2021</div>
+    <h1>EBENÉZER<br><span>BARBEARIA</span></h1>
+    <p class="hero-sub">Cortes precisos. Barbas impecáveis. Arte na aparência.</p>
+    <div class="hero-ctas">
+      <a href="#agendar" class="btn-primary">Agendar agora</a>
+      <a href="#servicos" class="btn-outline">Ver serviços</a>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="services-header reveal">
+    <p class="section-label">O que oferecemos</p>
+    <h2 class="section-title">Os nossos <em>serviços</em></h2>
+    <p class="section-intro">Cada serviço é realizado com atenção ao detalhe e dedicação total ao cliente.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card"><div class="service-name">Corte de Cabelo</div><div class="service-meta"><span>✦ 30 min</span></div><div class="service-price"><sup>€</sup>15</div><button class="service-book" onclick="jumpToBooking('Corte de Cabelo',30,15)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Barba</div><div class="service-meta"><span>✦ 30 min</span></div><div class="service-price"><sup>€</sup>12</div><button class="service-book" onclick="jumpToBooking('Barba',30,12)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Cabelo + Barba</div><div class="service-meta"><span>✦ 1 hora</span></div><div class="service-price"><sup>€</sup>22</div><button class="service-book" onclick="jumpToBooking('Cabelo + Barba',60,22)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Sobrancelha</div><div class="service-meta"><span>✦ 15 min</span></div><div class="service-price"><sup>€</sup>7</div><button class="service-book" onclick="jumpToBooking('Sobrancelha',15,7)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Combo</div><div class="service-meta"><span>✦ 1 hora</span></div><div class="service-price"><sup>€</sup>25</div><button class="service-book" onclick="jumpToBooking('Combo',60,25)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Cabelo + Sobrancelha</div><div class="service-meta"><span>✦ 45 min</span></div><div class="service-price"><sup>€</sup>20</div><button class="service-book" onclick="jumpToBooking('Cabelo + Sobrancelha',45,20)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Platinado</div><div class="service-meta"><span>✦ 1 hora</span></div><div class="service-price"><sup>€</sup>45</div><button class="service-book" onclick="jumpToBooking('Platinado',60,45)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Permanente (Caracóis)</div><div class="service-meta"><span>✦ 1 hora</span></div><div class="service-price"><sup>€</sup>45</div><button class="service-book" onclick="jumpToBooking('Permanente (Caracóis)',60,45)">Solicitar agendamento →</button></div>
+    <div class="service-card"><div class="service-name">Defrizante / Alisamento</div><div class="service-meta"><span>✦ 1 hora</span></div><div class="service-price"><sup>€</sup>30</div><button class="service-book" onclick="jumpToBooking('Defrizante / Alisamento',60,30)">Solicitar agendamento →</button></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="agendar">
+  <div class="booking-layout">
+    <div class="booking-info reveal">
+      <p class="section-label">Marque a sua visita</p>
+      <h2 class="section-title">Agende <em>online</em></h2>
+      <p class="section-intro">Escolha o serviço, a data e o horário disponível. O slot fica reservado em tempo real no calendário.</p>
+      <div class="booking-detail">
+        <div class="booking-detail-item">
+          <div class="detail-icon">📍</div>
+          <div class="detail-text"><p>Endereço</p><span>Av Dr. António Rodrigues Manito 53A – Loja 5<br>Centro Comercial do Liceu, Setúbal</span></div>
+        </div>
+        <div class="booking-detail-item">
+          <div class="detail-icon">📞</div>
+          <div class="detail-text"><p>Telefone</p><span><a href="tel:934179214" style="color:var(--gold);text-decoration:none;">934 179 214</a></span></div>
+        </div>
+        <div class="booking-detail-item">
+          <div class="detail-icon">🕐</div>
+          <div class="detail-text"><p>Horário</p><span>Ter – Sex: 10:00 – 19:00<br>Sáb: 09:00 – 17:00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <!-- Step tabs -->
+      <div class="steps">
+        <button class="step-btn active" id="tab1"><span class="step-num">1</span>Serviço</button>
+        <button class="step-btn" id="tab2" disabled><span class="step-num">2</span>Data</button>
+        <button class="step-btn" id="tab3" disabled><span class="step-num">3</span>Horário</button>
+        <button class="step-btn" id="tab4" disabled><span class="step-num">4</span>Dados</button>
+      </div>
+
+      <!-- Step 1: Choose service -->
+      <div class="step-panel active" id="step1">
+        <div class="service-select-grid" id="svcGrid"></div>
+        <div class="step-actions">
+          <button class="btn-step-next" id="next1" disabled onclick="goStep(2)">Escolher data →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Choose date -->
+      <div class="step-panel" id="step2">
+        <div class="calendar-wrap">
+          <div class="cal-header">
+            <button class="cal-nav" id="calPrev" onclick="changeMonth(-1)">&#8592;</button>
+            <span class="cal-title" id="calTitle"></span>
+            <button class="cal-nav" id="calNext" onclick="changeMonth(1)">&#8594;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="step-actions">
+          <button class="btn-step-back" onclick="goStep(1)">← Voltar</button>
+          <button class="btn-step-next" id="next2" disabled onclick="goStep(3)">Ver horários →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Choose time slot -->
+      <div class="step-panel" id="step3">
+        <div id="slotsContainer">
+          <div class="slots-loading"><div class="spinner"></div>A verificar disponibilidade...</div>
+        </div>
+        <div class="step-actions">
+          <button class="btn-step-back" onclick="goStep(2)">← Voltar</button>
+          <button class="btn-step-next" id="next3" disabled onclick="goStep(4)">Preencher dados →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Contact details + confirm -->
+      <div class="step-panel" id="step4">
+        <div class="booking-summary" id="bookingSummary"></div>
+        <div class="form-fields">
+          <div class="form-row-2">
+            <div class="form-group"><label>Nome completo *</label><input type="text" id="f_name" placeholder="João Silva" required></div>
+            <div class="form-group"><label>Email *</label><input type="email" id="f_email" placeholder="joao@email.com" required></div>
+          </div>
+          <div class="form-group"><label>Telefone</label><input type="tel" id="f_phone" placeholder="9XX XXX XXX"></div>
+          <div class="form-group"><label>Observações (opcional)</label><textarea id="f_notes" placeholder="Alguma preferência ou informação adicional..."></textarea></div>
+          <div id="bookingError" class="form-error" style="display:none;"></div>
+        </div>
+        <div class="step-actions">
+          <button class="btn-step-back" onclick="goStep(3)">← Voltar</button>
+          <button class="btn-step-next" id="confirmBtn" onclick="confirmBooking()">Confirmar reserva ✦</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="booking-success" id="bookingSuccess">
+        <div class="success-icon">✦</div>
+        <h3>Reserva confirmada!</h3>
+        <p>Receberá um email de confirmação em <strong id="successEmail"></strong>.<br>O evento foi adicionado ao calendário da barbearia.</p>
+        <div style="margin-top:1.5rem;">
+          <button class="btn-primary" onclick="resetBooking()">Fazer nova reserva</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="horario">
+  <div class="reveal">
+    <p class="section-label" style="text-align:center;">Quando nos visitar</p>
+    <h2 class="section-title" style="text-align:center;">Horário de <em>funcionamento</em></h2>
+  </div>
+  <div class="hours-grid reveal">
+    <div class="hours-item"><p class="hours-day">Segunda</p><p class="hours-time" style="color:var(--muted);font-family:'Barlow',sans-serif;font-size:0.85rem;">Encerrado</p></div>
+    <div class="hours-item"><p class="hours-day">Ter – Sex</p><p class="hours-time">10:00 – 19:00</p></div>
+    <div class="hours-item"><p class="hours-day">Sábado</p><p class="hours-time">09:00 – 17:00</p></div>
+    <div class="hours-item"><p class="hours-day">Domingo</p><p class="hours-time" style="color:var(--muted);font-family:'Barlow',sans-serif;font-size:0.85rem;">Encerrado</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="contact-map reveal">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.3!2d-8.8937!3d38.5244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDMxJzI4LjAiTiA4wrA1Myc1Ny4zIlc!5e0!3m2!1spt!2spt!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div class="contact-details reveal">
+    <p class="section-label">Fale connosco</p>
+    <h2 class="section-title">Onde nos <em>encontrar</em></h2>
+    <div class="contact-item"><p>Endereço</p><span>Av Dr. António Rodrigues Manito 53A – Loja 5<br>Centro Comercial do Liceu, Setúbal</span></div>
+    <div class="contact-item"><p>Telefone</p><span><a href="tel:934179214">934 179 214</a></span></div>
+    <div class="contact-item"><p>WhatsApp</p><span><a href="https://wa.me/351934179214" target="_blank" rel="noopener">Enviar mensagem →</a></span></div>
+    <div class="contact-item"><p>Email</p><span><a href="mailto:info@barbeariaebenezer.pt">info@barbeariaebenezer.pt</a></span></div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">EBENÉZER BARBEARIA</span>
+  <p>© 2025 Ebenézer Barbearia · Setúbal, Portugal</p>
+  <p style="font-size:0.72rem;">Av Dr. António Rodrigues Manito 53A · Tel: 934 179 214</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const SERVICES = [
+  { name:'Corte de Cabelo',       duration:30,  price:15  },
+  { name:'Barba',                 duration:30,  price:12  },
+  { name:'Cabelo + Barba',        duration:60,  price:22  },
+  { name:'Sobrancelha',           duration:15,  price:7   },
+  { name:'Combo',                 duration:60,  price:25  },
+  { name:'Cabelo + Sobrancelha',  duration:45,  price:20  },
+  { name:'Platinado',             duration:60,  price:45  },
+  { name:'Permanente (Caracóis)', duration:60,  price:45  },
+  { name:'Defrizante / Alisamento', duration:60, price:30 },
+];
+
+// Days open: 0=Sun,1=Mon,...,6=Sat
+const OPEN_DAYS = new Set([2,3,4,5,6]); // Tue–Sat
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let state = {
+  step: 1,
+  service: null,   // { name, duration, price }
+  date: null,      // 'YYYY-MM-DD'
+  time: null,      // 'HH:MM'
+  calYear: null,
+  calMonth: null,
+};
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+(function init() {
+  const now = new Date();
+  state.calYear  = now.getFullYear();
+  state.calMonth = now.getMonth();
+  buildServiceGrid();
+  renderCalendar();
+})();
+
+// ─── SERVICE GRID ─────────────────────────────────────────────────────────────
+function buildServiceGrid() {
+  const grid = document.getElementById('svcGrid');
+  grid.innerHTML = SERVICES.map((s, i) => `
+    <div class="svc-option" onclick="selectService(${i})" data-idx="${i}">
+      <div class="svc-option-name">${s.name}</div>
+      <div class="svc-option-meta">${s.duration >= 60 ? (s.duration/60)+'h' : s.duration+' min'}</div>
+      <div class="svc-option-price">€${s.price}</div>
+    </div>
+  `).join('');
+}
+
+function selectService(idx) {
+  state.service = SERVICES[idx];
+  state.date = null;
+  state.time = null;
+  document.querySelectorAll('.svc-option').forEach((el,i) =>
+    el.classList.toggle('selected', i === idx)
+  );
+  document.getElementById('next1').disabled = false;
+}
+
+function jumpToBooking(name, duration, price) {
+  const idx = SERVICES.findIndex(s => s.name === name);
+  if (idx >= 0) selectService(idx);
+  document.getElementById('agendar').scrollIntoView({ behavior:'smooth' });
+  if (state.step !== 1) goStep(1);
+}
+
+// ─── CALENDAR ────────────────────────────────────────────────────────────────
+const PT_MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const PT_DAYS   = ['D','S','T','Q','Q','S','S'];
+
+function renderCalendar() {
+  const { calYear:y, calMonth:m } = state;
+  document.getElementById('calTitle').textContent = `${PT_MONTHS[m]} ${y}`;
+
+  const today    = new Date(); today.setHours(0,0,0,0);
+  const firstDay = new Date(y, m, 1).getDay();
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+
+  // Disable prev if we're already in current month
+  document.getElementById('calPrev').disabled =
+    y === today.getFullYear() && m === today.getMonth();
+
+  let html = PT_DAYS.map(d => `<div class="cal-day-label">${d}</div>`).join('');
+
+  // empty cells before 1st
+  for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date   = new Date(y, m, d);
+    const dow    = date.getDay();
+    const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday   = date.getTime() === today.getTime();
+    const isPast    = date < today;
+    const isClosed  = !OPEN_DAYS.has(dow);
+    const isSelected = state.date === dateStr;
+
+    let cls = 'cal-day';
+    if (isPast)       cls += ' past';
+    else if (isClosed) cls += ' closed';
+    else               cls += ' available';
+    if (isToday)      cls += ' today';
+    if (isSelected)   cls += ' selected';
+
+    const clickable = !isPast && !isClosed;
+    html += `<div class="${cls}" ${clickable ? `onclick="selectDate('${dateStr}')"` : ''}>${d}</div>`;
+  }
+
+  document.getElementById('calGrid').innerHTML = html;
+}
+
+function changeMonth(dir) {
+  state.calMonth += dir;
+  if (state.calMonth > 11) { state.calMonth = 0; state.calYear++; }
+  if (state.calMonth < 0)  { state.calMonth = 11; state.calYear--; }
+  renderCalendar();
+}
+
+function selectDate(dateStr) {
+  state.date = dateStr;
+  state.time = null;
+  renderCalendar();
+  document.getElementById('next2').disabled = false;
+}
+
+// ─── TIME SLOTS ──────────────────────────────────────────────────────────────
+async function loadSlots() {
+  const container = document.getElementById('slotsContainer');
+  container.innerHTML = `<div class="slots-loading"><div class="spinner"></div>A verificar disponibilidade...</div>`;
+  document.getElementById('next3').disabled = true;
+
+  try {
+    const res  = await fetch(`/.netlify/functions/calendar?action=slots&date=${state.date}&duration=${state.service.duration}`);
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Erro ao carregar horários');
+
+    const slots = data.slots;
+    if (!slots || slots.length === 0) {
+      container.innerHTML = `<p class="slots-empty">Não há horários disponíveis para este dia. Por favor escolha outra data.</p>`;
+      return;
+    }
+
+    // Format date label
+    const d = new Date(state.date + 'T12:00:00');
+    const label = d.toLocaleDateString('pt-PT', { weekday:'long', day:'numeric', month:'long' });
+    container.innerHTML = `
+      <p class="slots-header">Horários disponíveis para <strong style="color:var(--text)">${label}</strong></p>
+      <div class="slots-grid">
+        ${slots.map(t => `<button class="slot-btn" onclick="selectSlot('${t}')">${t}</button>`).join('')}
+      </div>`;
+  } catch (err) {
+    container.innerHTML = `<p class="slots-empty" style="color:#e05a5a;">Erro ao carregar horários: ${err.message}</p>`;
+  }
+}
+
+function selectSlot(time) {
+  state.time = time;
+  document.querySelectorAll('.slot-btn').forEach(b =>
+    b.classList.toggle('selected', b.textContent === time)
+  );
+  document.getElementById('next3').disabled = false;
+}
+
+// ─── STEP NAVIGATION ─────────────────────────────────────────────────────────
+function goStep(n) {
+  // Validate
+  if (n > 1 && !state.service) return;
+  if (n > 2 && !state.date)    return;
+  if (n > 3 && !state.time)    return;
+
+  state.step = n;
+
+  // Update tabs
+  ['tab1','tab2','tab3','tab4'].forEach((id, i) => {
+    const btn = document.getElementById(id);
+    btn.classList.toggle('active', i+1 === n);
+    btn.disabled = i+1 > n && !(
+      (i+1 === 2 && state.service) ||
+      (i+1 === 3 && state.date) ||
+      (i+1 === 4 && state.time)
+    );
+  });
+
+  // Update panels
+  document.querySelectorAll('.step-panel').forEach((p,i) =>
+    p.classList.toggle('active', i+1 === n)
+  );
+
+  if (n === 3) loadSlots();
+  if (n === 4) renderSummary();
+}
+
+function renderSummary() {
+  const d = new Date(state.date + 'T12:00:00');
+  const dateLabel = d.toLocaleDateString('pt-PT', { weekday:'long', day:'numeric', month:'long' });
+  document.getElementById('bookingSummary').innerHTML = `
+    <div><span>Serviço</span><br><strong>${state.service.name}</strong></div>
+    <div><span>Data</span><br><strong>${dateLabel}</strong></div>
+    <div><span>Hora</span><br><strong>${state.time}</strong></div>
+    <div><span>Valor</span><br><strong>€${state.service.price}</strong></div>
+  `;
+}
+
+// ─── CONFIRM BOOKING ─────────────────────────────────────────────────────────
+async function confirmBooking() {
+  const name  = document.getElementById('f_name').value.trim();
+  const email = document.getElementById('f_email').value.trim();
+  const phone = document.getElementById('f_phone').value.trim();
+  const notes = document.getElementById('f_notes').value.trim();
+  const errEl = document.getElementById('bookingError');
+
+  errEl.style.display = 'none';
+
+  if (!name || !email) {
+    errEl.textContent = 'Por favor preencha o nome e o email.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Por favor introduza um email válido.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('confirmBtn');
+  btn.disabled = true;
+  btn.textContent = 'A confirmar...';
+
+  try {
+    const res = await fetch('/.netlify/functions/calendar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name, email, phone, notes,
+        service:     state.service.name,
+        serviceName: state.service.name,
+        date:        state.date,
+        time:        state.time,
+        duration:    state.service.duration,
+        price:       state.service.price,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      if (data.error === 'slot_taken') {
+        errEl.textContent = data.message;
+        errEl.style.display = 'block';
+        // Reload slots to show updated availability
+        setTimeout(() => goStep(3), 1500);
+      } else {
+        throw new Error(data.error || 'Erro desconhecido');
+      }
+      btn.disabled = false;
+      btn.textContent = 'Confirmar reserva ✦';
+      return;
+    }
+
+    // Success
+    document.getElementById('successEmail').textContent = email;
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('.steps').style.display = 'none';
+    document.getElementById('bookingSuccess').style.display = 'block';
+
+  } catch (err) {
+    errEl.textContent = `Erro: ${err.message}. Por favor tente novamente ou contacte-nos por telefone.`;
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Confirmar reserva ✦';
+  }
+}
+
+function resetBooking() {
+  state = { step:1, service:null, date:null, time:null, calYear:new Date().getFullYear(), calMonth:new Date().getMonth() };
+  document.getElementById('bookingSuccess').style.display = 'none';
+  document.querySelector('.steps').style.display = 'flex';
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i===0));
+  document.querySelectorAll('.svc-option').forEach(el => el.classList.remove('selected'));
+  document.getElementById('next1').disabled = true;
+  ['tab1','tab2','tab3','tab4'].forEach((id,i) => {
+    const b = document.getElementById(id);
+    b.classList.toggle('active', i===0);
+    b.disabled = i > 0;
+  });
+  renderCalendar();
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = `toast ${type} show`;
+  setTimeout(() => t.className='toast', 4000);
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries =>
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold:0.1 }
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 window.addEventListener('load', () => {
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
